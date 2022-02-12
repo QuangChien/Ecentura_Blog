@@ -78,7 +78,7 @@ class Save extends Action
         if (empty($this->data['url_key'])) {
             $url_key = preg_replace('#[^0-9a-z]+#i', '-', $this->data['title']);
         }else{
-            $url_key = preg_replace('#[^0-9a-z]+#i', '-', $this->data['title']);
+            $url_key = preg_replace('#[^0-9a-z]+#i', '-', $this->data['url_key']);
         }
 
         return strtolower($url_key);
