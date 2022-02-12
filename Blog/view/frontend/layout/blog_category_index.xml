@@ -1,0 +1,27 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Ecentura_Blog::css/base.css"/>
+        <css src="Ecentura_Blog::css/grid.css"/>
+        <css src="Ecentura_Blog::css/responsive.css"/>
+        <css src="Ecentura_Blog::css/main.css"/>
+        <css src="Ecentura_Blog::css/list.css"/>
+
+<!--        <script src="Ecentura_Blog::js/owlcarousel/owl.carousel.min.js"/>-->
+        <script src="Ecentura_Blog::js/toggle-menu.js"/>
+<!--        <script src="Ecentura_Blog::js/toggle-menu.js"/>-->
+<!--        <script src="Ecentura_Blog::js/demo.js"/>-->
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <container name="blog.category.content" htmlTag="div" htmlId="page-content">
+                <container name="blog.category.grid" htmlTag="div" htmlClass="grid wide">
+                    <block class="Ecentura\Blog\Block\Category\Title" name="blog.category.title" template="Ecentura_Blog::category/category_title.phtml"/>
+                    <container htmlTag="div" htmlId="post-content" htmlClass="row">
+                        <block class="Ecentura\Blog\Block\Category\Index" name="blog.category.list" template="Ecentura_Blog::category/category_list.phtml"/>
+                        <block class="Ecentura\Blog\Block\Sidebar\Index" name="blog.sidebar" template="Ecentura_Blog::sidebar/sidebar.phtml"/>
+                    </container>
+                </container>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

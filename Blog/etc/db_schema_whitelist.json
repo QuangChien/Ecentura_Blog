@@ -1,0 +1,64 @@
+{
+    "blog_category": {
+        "column": {
+            "category_id": true,
+            "name": true,
+            "url_key": true,
+            "created_at": true,
+            "updated_at": true,
+            "status": true,
+            "meta_title": true,
+            "meta_keyword": true,
+            "meta_description": true,
+            "path": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "BLOG_CATEGORY_NAME": true
+        }
+    },
+    "blog_author": {
+        "column": {
+            "author_id": true,
+            "name": true,
+            "avatar": true,
+            "information": true,
+            "facebook_link": true,
+            "instagram_link": true,
+            "linkedin_link": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "blog_post": {
+        "column": {
+            "post_id": true,
+            "title": true,
+            "url_key": true,
+            "image_description": true,
+            "description": true,
+            "content": true,
+            "feature_image": true,
+            "created_at": true,
+            "updated_at": true,
+            "status": true,
+            "meta_title": true,
+            "meta_keyword": true,
+            "meta_description": true,
+            "time_read": true,
+            "author_id": true,
+            "publish_time": true,
+            "path": true
+        },
+        "index": {
+            "BLOG_POST_POST_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "BLOG_POST_AUTHOR_ID_BLOG_AUTHOR_AUTHOR_ID": true
+        }
+    }
+}

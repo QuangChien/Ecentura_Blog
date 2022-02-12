@@ -1,0 +1,6 @@
+.admin__menu .level-0.item-blog > a:before {
+    content: url('../images/pencil.png');
+    height: 28px;
+    margin: 0 auto;
+    width: 30px;
+}

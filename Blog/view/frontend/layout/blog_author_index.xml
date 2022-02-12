@@ -1,0 +1,18 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Ecentura_Blog::css/base.css"/>
+        <css src="Ecentura_Blog::css/grid.css"/>
+        <css src="Ecentura_Blog::css/responsive.css"/>
+        <css src="Ecentura_Blog::css/main.css"/>
+        <css src="Ecentura_Blog::css/author.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <container name="blog.author.content" htmlTag="div" htmlId="page-content">
+                <container name="blog.author.grid" htmlTag="div" htmlClass="grid wide">
+                    <block class="Ecentura\Blog\Block\Author\Index" name="blog.author.list" template="Ecentura_Blog::author/list.phtml"/>
+                </container>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

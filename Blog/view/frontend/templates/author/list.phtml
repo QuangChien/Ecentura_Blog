@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col l-8">
+        <h1 class="page-title">
+            Unsere Autoren
+        </h1>
+    </div>
+</div>
+
+<div id="author-content">
+    <?php
+    if($block->getAuthors()->count() > 0):?>
+        <?php
+            foreach ($block->getAuthors() as $author):?>
+    <div id="<?= strtolower(preg_replace('#[^0-9a-z]+#i', '-', $author->getName())) ?>" class="row author-item-wrapper">
+        <div class="col l-3 m-3 c-12 author-item-img">
+            <?php
+            if($author->getAvatar() !== ' '):?>
+                <img src="<?= $block->getMediaUrl() .'ecentura/blog/' . $author->getAvatar()?>" width="100%" alt="">
+
+            <?php else: ?>
+                <img src="<?= $block->getViewFileUrl('Ecentura_Blog::images/avatar-default.png')?>" width="100%" alt="">
+            <?php endif; ?>
+        </div>
+        <div class="col l-9 m-9 c-12">
+            <div class="author-info">
+                <h2 class="author-name"><?= $author->getName() ?></h2>
+                <div class="author-description">
+                    <?= $author->getInformation() ?>
+                </div>
+                <div class="author-social">
+                    <?php
+                    if($author->getFacebookLink()):?>
+                        <a target="_blank" class="author-social-item" href="<?= $author->getFacebookLink() ?>"><img width="100%" src="<?= $block->getViewFileUrl('Ecentura_Blog::images/icon_facebook.svg') ?>" alt=""></a>
+                    <?php endif;?>
+                    <?php
+                    if($author->getInstagramLink()):?>
+                        <a target="_blank" class="author-social-item" href="<?= $author->getInstagramLink() ?>"><img width="100%" src="<?= $block->getViewFileUrl('Ecentura_Blog::images/icon_instagram.svg') ?>" alt=""></a>
+                    <?php endif;?>
+                    <?php
+                    if($author->getLinkedinLink()):?>
+                        <a target="_blank" class="author-social-item" href="<?= $author->getLinkedinLink() ?>"><img width="100%" src="<?= $block->getViewFileUrl('Ecentura_Blog::images/icon_linkedin.svg') ?>" alt=""></a>
+                    <?php endif;?>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <?php endforeach;?>
+    <?php else: ?>
+    <div class="row author-item-wrapper">
+        <div class="col">
+            <p>There are no authors!</p>
+        </div>
+    </div>
+    <?php endif; ?>
+
+</div>

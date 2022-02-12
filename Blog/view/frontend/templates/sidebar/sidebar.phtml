@@ -1,0 +1,29 @@
+<div class="col l-4 c-12 sidebar">
+    <?php
+    if ($block->getAllCateogry()->count() > 0):?>
+        <div class="posts-categories">
+            <?php
+            $block->generateMenu();
+            ?>
+        </div>
+    <?php endif; ?>
+
+    <?php
+    if ($block->getPostNews()->count() > 0):?>
+        <div class="new-posts">
+            <div class="new-posts-title sidebar-title">
+                Letzte Beiträge
+            </div>
+
+            <div class="socials-content">
+                <?php
+                foreach ($block->getPostNews() as $postNew): ?>
+                    <div class="new-posts-item">
+                        <a class="new-posts-link decoration-none"
+                           href="<?= $block->getUrl('blog/post') . $postNew->getUrlKey() . '.html' ?>"><?= $postNew->getTitle() ?></a>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    <?php endif; ?>
+</div>

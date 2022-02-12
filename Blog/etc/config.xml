@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <blog>
+            <general>
+                <total_post_per_page>10</total_post_per_page>
+                <total_post_news>5</total_post_news>
+            </general>
+
+            <config_page>
+                <meta_title>All Posts</meta_title>
+                <meta_keywords>All Posts</meta_keywords>
+                <meta_description>All Posts</meta_description>
+            </config_page>
+        </blog>
+    </default>
+</config>

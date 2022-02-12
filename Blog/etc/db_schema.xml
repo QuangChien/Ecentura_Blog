@@ -1,0 +1,86 @@
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="blog_category" resource="default" engine="innodb"
+           comment="Blog Category Table">
+        <column xsi:type="int" name="category_id" unsigned="false" nullable="false" identity="true"
+                comment="Category ID"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Blog Category Name"/>
+        <column xsi:type="varchar" name="url_key" nullable="false" length="500" comment="Blog Category URL"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Update Time"/>
+        <column xsi:type="smallint" name="status" identity="false" nullable="false" comment="Status" default="1"/>
+        <column xsi:type="varchar" name="meta_title" nullable="true" length="255" comment="Meta Title Blog Category"/>
+        <column xsi:type="varchar" name="meta_keyword" nullable="true" length="50"
+                comment="Meta Keyword Blog Category"/>
+        <column xsi:type="varchar" name="meta_description" nullable="true" length="255"
+                comment="Meta Description Blog Category"/>
+<!--        <column xsi:type="varchar" name="parent_id" identity="false" nullable="false" comment="Parent_id" default="0"/>-->
+        <column xsi:type="varchar" name="path" nullable="true" length="255" comment="Tree Path"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="category_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="UNIQUE">
+            <column name="name" />
+        </constraint>
+    </table>
+
+    <table name="blog_author">
+        <column xsi:type="int" name="author_id" unsigned="false" nullable="false" identity="true"
+                comment="Blog Author Id"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Blog Author Name"/>
+        <column xsi:type="varchar" name="avatar" nullable="true" length="500" comment="Avatar"/>
+        <column xsi:type="text" name="information" nullable="false" comment="Information"/>
+        <column xsi:type="varchar" name="facebook_link" nullable="true" length="255" comment="Facebook Link"/>
+        <column xsi:type="varchar" name="instagram_link" nullable="true" length="255" comment="Instagram Link"/>
+        <column xsi:type="varchar" name="linkedin_link" nullable="true" length="255" comment="Linkedin Link"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Update Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="author_id"/>
+        </constraint>
+    </table>
+
+
+    <table name="blog_post">
+        <column xsi:type="int" name="post_id" unsigned="false" nullable="false" identity="true"
+                comment="Blog Post Id"/>
+        <column xsi:type="varchar" name="title" nullable="false" length="500" comment="Blog Post Title"/>
+        <column xsi:type="varchar" name="url_key" nullable="false" length="500" comment="Blog Post URL"/>
+        <column xsi:type="text" name="image_description" nullable="true" comment="Blog Post Image Description"/>
+        <column xsi:type="text" name="description" nullable="true" comment="Blog Post Description"/>
+        <column xsi:type="mediumtext" name="content" nullable="true" comment="Content"/>
+        <column xsi:type="varchar" name="feature_image" nullable="false" length="500" comment="Feature Image"/>
+<!--        <column xsi:type="text" name="image" nullable="false" comment="Image"/>-->
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Update Time"/>
+        <column xsi:type="smallint" name="status" identity="false" nullable="false" comment="Status" default="1"/>
+        <column xsi:type="varchar" name="meta_title" nullable="true" length="255" comment="Meta Title Blog Category"/>
+        <column xsi:type="varchar" name="meta_keyword" nullable="true" length="50"
+                comment="Meta Keyword Blog Category"/>
+        <column xsi:type="varchar" name="meta_description" nullable="true" length="255"
+                comment="Meta Description Blog Category"/>
+<!--        <column xsi:type="int" name="time_read" unsigned="false" nullable="true" comment="Time Read"/>-->
+
+        <column xsi:type="int" name="author_id" unsigned="false" nullable="false"
+                comment="Author Id"/>
+        <column xsi:type="datetime" name="publish_time" on_update="true" nullable="true" default="CURRENT_TIMESTAMP"
+                comment="Publish Time"/>
+        <column xsi:type="varchar" name="path" nullable="true" length="255" comment="Tree Path"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="post_id"/>
+        </constraint>
+
+        <constraint xsi:type="foreign" referenceId="AUTHOR_ID_POST_ID" table="blog_post"
+                    column="author_id" referenceTable="blog_author" referenceColumn="author_id"
+                    onDelete="CASCADE"/>
+    </table>
+</schema>
+

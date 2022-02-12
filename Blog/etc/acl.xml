@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Ecentura_Blog::blog" title="Blog" sortOrder="51">
+                    <resource id="Ecentura_Blog::blog_post" title="Posts" sortOrder="10"/>
+                    <resource id="Ecentura_Blog::blog_category" title="Categories" sortOrder="15"/>
+                    <resource id="Ecentura_Blog::blog_author" title="Blog Authors" sortOrder="20"/>
+                    <resource id="Ecentura_Blog::blog_configuration" title="Configuration" sortOrder="99" />
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Ecentura_Blog::blog_config" title="Blog"/>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

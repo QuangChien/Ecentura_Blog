@@ -1,0 +1,97 @@
+<div class="col l-8 m-12 c-12 posts-item-wrapper">
+    <div class="post-image-info">
+        <?php
+        if($block->getPostItem()->getFeatureImage()):?>
+            <img src="<?= $block->getMediaUrl() . '/ecentura/blog/' . $block->getPostItem()->getFeatureImage()?>" width="100%" alt="">
+        <?php endif;?>
+
+        <?php
+        if($block->getPostItem()->getImageDescription()):?>
+            <div class="image-title">
+                <?= $block->getPostItem()->getImageDescription() ?>
+            </div>
+        <?php endif;?>
+    </div>
+
+    <div class="post-item-info">
+        <div class="post-item-date item">
+            <span>
+                <?php
+                $date = date_create($block->getPostItem()->getCreatedAt());
+                echo date_format($date, 'd.m.Y'); ?>
+                </span>
+        </div>
+                <div class="post-item-author item">
+                    <a class="post-author-link decoration-none" href="<?= $block->getUrl('blog/author') .'#'. strtolower(preg_replace('#[^0-9a-z]+#i', '-', $block->getPostItem()->getName()))?>"><?= $block->getPostItem()->getName() ?></a>
+                </div>
+
+        <div class="post-share-social-wrap item">
+            <div class="post-share-social">
+                Teilen:
+                <div class="icon-group">
+                    <a class="icon-facebook icon" target="_blank" data-rel="popup" title="Bei Facebook teilen" aria-label="Bei Facebook teilen" href="https://www.facebook.com/sharer/sharer.php?u=<?= $block->getUrlCurrent() ?>"><img class="icon-img" src="<?= $block->getViewFileUrl('Ecentura_Blog::images/facebook-square-brands.svg') ?>"
+                                                               width="100%" alt=""></a>
+                    <?php
+                    if($block->getConfigValue('blog/general/instagram_link') !== null):?>
+                        <a target="_blank" class="icon-instagram icon" rel="noopener" href="<?= $block->getConfigValue('blog/general/instagram_link'); ?>"><img class="icon-img"
+                                                                    src="<?= $block->getViewFileUrl('Ecentura_Blog::images/instagram-square-brands.svg') ?>" width="100%"
+                                                                    alt=""></a>
+
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-detail">
+        <?= $block->getPostItem()->getContent() ?>
+    </div>
+
+    <div class="author-info-wrapper">
+        <?php
+        if($block->getPostItem()->getAvatar() !== ' '):?>
+            <div class="author-info-image">
+                <img src="<?= $block->getMediaUrl() . '/ecentura/blog/' . $block->getPostItem()->getAvatar()?>" width="100%" alt="">
+            </div>
+        <?php else: ?>
+            <div class="author-info-image">
+                <img src="<?= $block->getViewFileUrl('Ecentura_Blog::images/avatar-default.png')?>" width="100%" alt="">
+            </div>
+        <?php endif; ?>
+        <div class="author-info">
+            <?= $block->getPostItem()->getInformation() ?>
+        </div>
+    </div>
+
+    <?php
+    if($block->getPostTogethor()->count() > 0):?>
+        <div class="news-post-slider">
+            <div class="news-post-slider-title">
+                <h3>Ähnliche Beiträge</h3>
+            </div>
+            <div class="owl-theme">
+                <div class="owl-controls">
+                    <div id="customNav" class="owl-nav"></div>
+                </div>
+            </div>
+            <div class="owl-carousel owl-theme">
+                <?php
+                foreach ($block->getPostTogethor() as $post):?>
+                    <div class="news-post-slider-item">
+                        <div class="news-post-slider-img">
+                            <img src="<?= $block->getMediaUrl() . '/ecentura/blog/' . $post->getFeatureImage()?>" width="100%" alt="">
+                        </div>
+
+                        <div class="news-post-slider-content">
+                            <h4 class="news-post-slider-title">
+                                <a class="news-post-slider-title-link decoration-none" href="<?= $block->getUrl('blog/post') . $post->getUrlKey() . '.html' ?>"><?= $post->getTitle() ?></a>
+                            </h4>
+
+                            <a class="news-post-slider-link decoration-none" href="<?= $block->getUrl('blog/post') . $post->getUrlKey() . '.html' ?>">Zum Beitrag</a>
+                        </div>
+                    </div>
+                <?php endforeach;?>
+            </div>
+        </div>
+    <?php endif;?>
+</div>

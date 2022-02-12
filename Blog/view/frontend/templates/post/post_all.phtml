@@ -1,0 +1,66 @@
+<?php
+if ($block->getPosts()->count() > 0):?>
+    <div class="col l-8 m-12 c-12">
+        <div class="posts-list-wrapper">
+            <?php
+            foreach ($block->getPosts() as $posts):?>
+                <div class="posts-item-wrapper">
+                    <div class="posts-item">
+                        <div class="post-item-header">
+                            <h2 class="post-title">
+                                <a href="<?= $block->getUrl('blog/post') . $posts->getUrlKey() . '.html' ?>"
+                                   class="post-item-link"><?= $posts->getTitle() ?></a>
+                            </h2>
+                        </div>
+
+                        <div class="row post-item-content">
+                            <div class="col l-5 c-12 m-5">
+                                <?php
+                                if ($posts->getFeatureImage()):?>
+                                    <img
+                                        src="<?= $block->getMediaUrl() . '/ecentura/blog/' . $posts->getFeatureImage() ?>"
+                                        width="100%" alt="">
+                                <?php endif; ?>
+                            </div>
+
+                            <div class="col l-7 c-12 m-7">
+                                <div>
+                                    <div class="post-descripton text-smile">
+                                        <?= $posts->getDescription() ?>
+                                    </div>
+                                    <div class="post-info">
+                                    <span><?php
+                                        $date = date_create($posts->getCreatedAt());
+                                        echo date_format($date, 'd.m.Y'); ?></span> |
+                                        <a href="<?= $block->getUrl('blog/author') .'#'. $posts->getName()?>" class="post-author"><?= $posts->getName() ?></a>
+                                    </div>
+
+                                    <div class="post-read-more">
+                                        <a class="decoration-none"
+                                           href="<?= $block->getUrl('blog/post') . $posts->getUrlKey() . '.html' ?>">Mehr
+                                            ...</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <?php if ($block->getPagerHtml()): ?>
+            <div class="order-products-toolbar toolbar bottom">
+                <?= $block->getPagerHtml() ?>
+            </div>
+        <?php else: ?>
+            <div class="message info empty">
+                <span><?= $block->escapeHtml('You have no data in table.') ?></span>
+            </div>
+        <?php endif; ?>
+    </div>
+<?php else: ?>
+    <div class="col l-8 m-12 c-12">
+        <p style="color: #ff3333;">There are no posts!</p>
+    </div>
+<?php endif; ?>
+
+
